@@ -1,16 +1,17 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-'''from src.app.api.shortener import router as shortener_router
 from src.app.db.db import engine
-from src.app.db.models import Base'''
+from src.app.db.models import Base
+from src.app.api.application_api import router as application_router
 
-'''@asynccontextmanager
+@asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
-    yield'''
+    yield
 
 app = FastAPI(
     title = 'GazNux',
@@ -18,4 +19,5 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-app.include_router(shortener_router)
+app.include_router(application_router)
+
