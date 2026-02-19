@@ -33,3 +33,8 @@ async def create_application(
         pass
 
     return {"status" : "Успешно!", "message": "Заявка успешно создана!"}
+
+
+@router.get('/')
+async def main(session: Annotated[AsyncSession, Depends(get_session)]):
+    return {'status' : "Успешно!", "message": "Используйте /application для создание заявки"}
