@@ -10,6 +10,7 @@ async def write_application(session: AsyncSession, data) -> None:
         name = data.name,
         number = data.number,
         comment = data.comment,
+        service = data.service,
         date_created = datetime.now()
     ))
 

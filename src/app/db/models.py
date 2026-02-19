@@ -12,5 +12,5 @@ class Applications(Base):
     name: Mapped[str] = mapped_column(String(30))
     number: Mapped[str] = mapped_column(String(20))
     comment: Mapped[str|None] = mapped_column(String(400), nullable=True)
-    service: Mapped[str] = mapped_column(String(100), nullable = True)
+    service: Mapped[str|None] = mapped_column(String(100), nullable = True)
     date_created: Mapped[datetime]
