@@ -6,28 +6,11 @@ from datetime import datetime
 class Base(AsyncAttrs, DeclarativeBase):
     pass
 
-class Services(Base):
-    __tablename__ = "services"
-    id: Mapped[int] = mapped_column(primary_key = True, autoincrement = True)
-    name: Mapped[str] = mapped_column(String(100))
-    description: Mapped[str] = mapped_column(String(500))
-    price: Mapped[float]
-
 class Applications(Base):
     __tablename__ = "applications"
     id: Mapped[int] = mapped_column(primary_key = True, autoincrement = True)
     name: Mapped[str] = mapped_column(String(30))
-    number: Mapped[str] = mapped_column(String(18))
+    number: Mapped[str] = mapped_column(String(20))
     comment: Mapped[str|None] = mapped_column(String(400), nullable=True)
-    service_id: Mapped[int] = mapped_column(ForeignKey(Services.id))
-    source: Mapped[str] = mapped_column(String(100))
+    service: Mapped[str] = mapped_column(String(100), nullable = True)
     date_created: Mapped[datetime]
-
-class Reviews(Base):
-    __tablename__ = "reviews"
-    id: Mapped[int] = mapped_column(primary_key = True, autoincrement = True)
-    owner: Mapped[str] = mapped_column(String(30))
-    text: Mapped[str] = mapped_column(String(500))
-    date_created: Mapped[datetime]
-
-    

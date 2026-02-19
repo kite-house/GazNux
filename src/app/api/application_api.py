@@ -16,6 +16,9 @@ async def create_application(
     data: AppSchema
 ):
     
-    await crud.write_application(session, data)
+    try:
+        await crud.write_application(session, data)
+    except Exception as error:
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail = f'Возникла ошибка на стороне сервера!')
 
     return {"status" : "Успешно!", "message": "Заявка успешно создана!"}
